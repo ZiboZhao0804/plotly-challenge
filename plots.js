@@ -1,8 +1,6 @@
-// Use D3 fetch to read the JSON file
-// The data from the JSON file is arbitrarily named importedData as the argument
-
 //metadata and demographic info
 function buildMetadata(id_num){
+  // Use D3 fetch to read the JSON file
   d3.json("data/samples.json").then((data) => {
     var metadatas = data.metadata;
     demoInfo = d3.select("#sample-metadata");
@@ -23,11 +21,11 @@ function buildCharts(id_num){
     //sort data by sample values
     var sortedData = selectedData.sort((a,b) => b.sample_values - a.sample_values)[0];
     //Use sample_values as the values for the bar chart.
-    //Use otu_ids as the labels for the bar chart.
-    //Use otu_labels as the hovertext for the chart.
     var values_bar = sortedData.sample_values.slice(0,10).reverse();
+    //Use otu_ids as the labels for the bar chart.
     var labels_bar = sortedData.otu_ids.slice(0,10).reverse();
     labels_bar = labels_bar.map(l => `OTU ${l}`);
+    //Use otu_labels as the hovertext for the chart.
     var text_bar = sortedData.otu_labels.slice(0,10).reverse();
     var bar_trace = {
       x: values_bar,
