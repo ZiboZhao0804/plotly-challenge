@@ -32,5 +32,5 @@ The dataset reveals that a small handful of microbial species (also called opera
 6. Update all of the plots any time that a new sample is selected.
 
 ## Step2. Deployment
-(https://zibozhao0804.github.io/plotly-challenge/)
+https://zibozhao0804.github.io/plotly-challenge/
 
