@@ -8,8 +8,8 @@ function buildMetadata(id_num){
     var selectedMetadata = metadatas.filter(sample => sample.id == id_num)[0];
     for (i = 0; i<Object.entries(selectedMetadata).length;i++){
       demoInfo.append("div").text(Object.keys(selectedMetadata)[i] + ": " + Object.values(selectedMetadata)[i] + '\n');
-    }
-  });
+    };
+  }); 
 }
 
 //sample and plotly
@@ -22,7 +22,6 @@ function buildCharts(id_num){
     //bar
     //sort data by sample values
     var sortedData = selectedData.sort((a,b) => b.sample_values - a.sample_values)[0];
-    console.log(sortedData[0]);
     //Use sample_values as the values for the bar chart.
     var values_bar = sortedData.sample_values.slice(0,10).reverse();
     //Use otu_ids as the labels for the bar chart.
