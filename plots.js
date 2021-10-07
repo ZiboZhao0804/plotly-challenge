@@ -17,6 +17,8 @@ function buildCharts(id_num){
   d3.json("data/samples.json").then((data) => {
     var samples = data.samples;
     var selectedData = samples.filter(sample => sample.id == id_num);
+    var metadatas = data.metadata;
+    var selectedMetadata = metadatas.filter(sample => sample.id == id_num)[0];
     //bar
     //sort data by sample values
     var sortedData = selectedData.sort((a,b) => b.sample_values - a.sample_values)[0];
@@ -76,6 +78,39 @@ function buildCharts(id_num){
     };
     
     Plotly.newPlot('bubble', bubble_data, bubble_layout);
+
+    //gauge
+    var gauge_value = selectedMetadata.wfreq;
+    var gauge_trace = {
+        domain: { x: [0, 1], y: [0, 1] },
+        value: gauge_value,
+        title: { text: "Belly Button Washing Frequency<br><sup>Scurbs per Week</sup>" },
+        type: "indicator",
+        mode: "gauge",
+        gauge: {
+          axis: { range: [null, 9] },
+          steps: [
+            { range: [0, 1], color: "#FFF0E6"},
+            { range: [1, 2], color: "#FFE1CC"},
+            { range: [2, 3], color: "#FFD1B3"},
+            { range: [3, 4], color: "#FFC299"},
+            { range: [4, 5], color: "#FFB380"},
+            { range: [5, 6], color: "#FFA466"},
+            { range: [6, 7], color: "#FF954D"},
+            { range: [7, 8], color: "#FF8533"},
+            { range: [8, 9], color: "#FF7619"},
+          ],
+          threshold: {
+            line: { color: "purple", width: 4 },
+            thickness: 0.75,
+            value: gauge_value
+          }
+        }
+      };
+    var gauge_data = [gauge_trace];
+    var gauge_layout = { width: 600, height: 450, margin: { t: 0, b: 0 } };
+    Plotly.newPlot('gauge', gauge_data, gauge_layout);
+    
   });
 }
 
