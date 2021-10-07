@@ -14,7 +14,7 @@ function buildMetadata(id_num){
   });
 }
 
-//sample and plot
+//sample and plotly
 function buildCharts(id_num){
   d3.json("data/samples.json").then((data) => {
     var samples = data.samples;
@@ -81,9 +81,8 @@ function buildCharts(id_num){
   });
 }
 
-
+//initialize a plot with the first id
 function init() {
-  var dropdownMenu = d3.select("#selDataset");
 
   d3.json("data/samples.json").then((data) => {
     //dropdown menu
@@ -102,6 +101,11 @@ function init() {
       buildMetadata(first);
   });
 }
+
+// On change to the DOM, call optionChanged()
+var dropdownMenu = d3.select("#selDataset");
+var id_num = dropdownMenu.property("value");
+d3.selectAll("#selDataset").on("change", optionChanged(id_num));
 
 // Function called by DOM changes
 function optionChanged(id_num) {
