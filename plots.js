@@ -81,34 +81,27 @@ function buildCharts(id_num){
   });
 }
 
-//dropdown menu
-d3.json("data/samples.json").then((data) => {
-  // use the data.names as test_id to build the dropdown menu
-  // assign text and value to be the id
-  var id = data.names;
-  var select = d3.select("select");
-  var options;
-  for (var i=0; i<id.length; i++) {
-    options = select.append("option");
-    options.text(id[i]);
-    options.attr("value",id[i]);
-  }
-})
 
 function init() {
   var dropdownMenu = d3.select("#selDataset");
 
   d3.json("data/samples.json").then((data) => {
-    // Assign the value of the dropdown menu option to a variable
-    var id = data.names;  
+    //dropdown menu
+    // use the data.names as test_id to build the dropdown menu
+    // assign text and value to be the id
+    var id = data.names;
+    var select = d3.select("select");
+    var options;
+    for (var i=0; i<id.length; i++) {
+      options = select.append("option");
+      options.text(id[i]);
+      options.attr("value",id[i]);
+    }
     const first = id[0];
-    buildCharts(first);
-    buildMetadata(first);
+      buildCharts(first);
+      buildMetadata(first);
   });
 }
-
-// On change to the DOM, call getData()
-d3.selectAll("#selDataset").on("change", optionChanged);
 
 // Function called by DOM changes
 function optionChanged(id_num) {
