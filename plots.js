@@ -142,8 +142,11 @@ d3.selectAll("#selDataset").on("change", optionChanged(id_num));
 
 // Function called by DOM changes
 function optionChanged(id_num) {
-  buildCharts(id_num);
-  buildMetadata(id_num);
+  if(id_num)
+  {
+    buildCharts(id_num);
+    buildMetadata(id_num);
+  }
 }
 
 init();
