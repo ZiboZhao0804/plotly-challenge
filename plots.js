@@ -63,7 +63,8 @@ function buildCharts(id_num){
       text: text_bubble,
       marker: {
         size: marker_size,
-        color: marker_color
+        color: marker_color,
+        colorscale: "Portland"
       }
     };
     
@@ -84,7 +85,7 @@ function buildCharts(id_num){
     var gauge_trace = {
         domain: { x: [0, 1], y: [0, 1] },
         value: gauge_value,
-        title: { text: "Belly Button Washing Frequency<br><sup>Scurbs per Week</sup>" },
+        title: { text: "Belly Button Washing Frequency<br><sup>Scrubs per Week</sup>" },
         type: "indicator",
         mode: "gauge",
         gauge: {
